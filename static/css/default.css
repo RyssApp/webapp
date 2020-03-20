@@ -1,0 +1,35 @@
+:root {
+  --primary: #70d156ff;
+  --primary-light: #afe4a0ff;
+  --primary-dark: #469c30ff;
+  --dark: #4d4d4dff;
+  --darker: #303030;
+  --light: #dbdbdb;
+  --lighter: #f0f0f0;
+  --font-special: 'Playfair Display', serif;
+  --font-regular: 'Quicksand', sans-serif;
+  --shadow-all: 0 1px 8px 0 rgba(0,0,0,.2), 0 3px 4px 0 rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.12);
+  --shadow-bottom: 0 2px 5px 0 rgba(0,0,0,.39);
+  --transition: .25s ease-in-out;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  font-family: var(--font-regular);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-dark);
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+#__nuxt, #__layout, #__content {
+  height: 100vh;
+  width: 100vw;
+}
