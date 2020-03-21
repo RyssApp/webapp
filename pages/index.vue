@@ -22,7 +22,7 @@
       <p class="text">
         Search for products in stores near you.
         <nuxt-link to="/about">
-          Learn more
+          About us
         </nuxt-link>
       </p>
     </div>
