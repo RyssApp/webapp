@@ -91,7 +91,7 @@ export default {
 
       let variationCount = 0
       for (const check in variations) {
-        variationCount += (variations[check] == true) ? 1 : 0
+        variationCount += (variations[check] === true) ? 1 : 0
       }
       score += (variationCount - 1) * 10
 
