@@ -16,8 +16,8 @@
         {{ text }}
       </p>
       <div class="controls">
-        <input class="input" type="text" placeholder="E-Mail">
-        <input class="input" type="password" placeholder="Password">
+        <input id="email" class="input" type="text" placeholder="E-Mail">
+        <input id="password" class="input" type="password" placeholder="Password">
         <a class="button" @click="login()">Login</a>
       </div>
       <p class="question">
@@ -40,7 +40,22 @@ export default {
   },
   methods: {
     login () {
+      const email = document.getElementById('email')
+      const password = document.getElementById('password')
 
+      const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+
+      if (email.value === '' && password.value === '') {
+        this.text = 'You have to provide your e-mail address as well as your password!'
+      } else if (email.value === '') {
+        this.text = 'You have to provide your e-mail address!'
+      } else if (password.value === '') {
+        this.text = 'You have to provide your password!'
+      } else if (re.test(String(email).toLowerCase())) {
+        this.text = 'You have to provide a valid e-mail address!'
+      } else {
+        // make call
+      }
     }
   }
 }

@@ -1,10 +1,14 @@
 <template>
   <div class="footer">
     <div class="left">
-      <a href="/imprint">Imprint</a>
+      <nuxt-link to="/imprint">
+        Imprint
+      </nuxt-link>
     </div>
     <div class="right">
-      <a href="/tos">Terms</a>
+      <nuxt-link to="/tos">
+        Terms
+      </nuxt-link>
     </div>
   </div>
 </template>
