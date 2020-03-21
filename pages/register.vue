@@ -16,11 +16,14 @@
         {{ text }}
       </p>
       <div class="controls">
-        <input class="input" type="text" placeholder="Username">
-        <input class="input" type="text" placeholder="E-Mail">
+        <input class="input" type="text" placeholder="Username" autocomplete="off">
+        <input class="input" type="text" placeholder="E-Mail" autocomplete="off">
         <input class="input" type="password" placeholder="Password">
         <input class="input" type="password" placeholder="Confirm Password">
-        <a class="button" @click="login()">Register</a>
+        <a class="button" @click="login()">
+          <fa-icon class="icon" icon="sign-in-alt" />
+          Register
+        </a>
       </div>
       <p class="question">
         Already registered?
@@ -75,8 +78,8 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: var(--light);
-    border: solid 1px var(--light-dark);
+    background: var(--lighter);
+    border: solid 1px var(--light);
     height: 700px;
     width: 500px;
     border-radius: 16px;
@@ -113,7 +116,7 @@ export default {
         font-family: var(--font);
         font-size: 14px;
         border-radius: 48px;
-        border: 1px solid var(--light-dark);
+        border: 1px solid var(--light);
         padding: 12px 18px;
         width: 240px;
         outline: none;
@@ -122,23 +125,29 @@ export default {
 
         &:focus, &:active {
           box-shadow: var(--shadow-all);
+          border: 1px solid var(--light-dark);
         }
       }
 
       .button {
-        border-radius: 8px;
-        border: solid 1px var(--light-dark);
-        background: var(--lighter);
-        color: var(--dark);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 48px;
+        border: solid 1px var(--light);
+        color: var(--darker);
+        background: var(--white);
         font-size: 18px;
         font-family: var(--font);
         cursor: pointer;
-        box-shadow: var(--shadow-bottom);
-        padding: 10px 18px;
-        margin-top: 8px;
-        width: 64px;
+        padding: 12px 24px;
         text-align: center;
         user-select: none;
+        margin: 18px 0 8px 0;
+
+        .icon {
+          margin-right: 8px;
+        }
 
         &:hover {
           transform: translateY(-2px);

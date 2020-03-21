@@ -38,6 +38,7 @@ export default {
   },
   data () {
     return {
+      query: this.getQuery(),
       currentPosition: [],
       yourLocation: [],
       stores: [
@@ -78,6 +79,9 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
+      this.$router.afterEach((to, from) => {
+        this.changeQuery(to.query.query)
+      })
       navigator.geolocation.getCurrentPosition((location) => {
         this.currentPosition = [location.coords.latitude, location.coords.longitude]
       })
@@ -87,6 +91,12 @@ export default {
     centerMap (id) {
       const store = this.stores.find(store => store.id === id)
       this.currentPosition = [store.latitude, store.longitude]
+    },
+    getQuery () {
+      return this.$route.query.query
+    },
+    changeQuery (query) {
+      // reload results
     }
   }
 }

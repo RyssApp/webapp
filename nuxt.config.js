@@ -40,7 +40,8 @@ export default {
     '@/plugins/auth.js'
   ],
   buildModules: [
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/fontawesome'
   ],
   modules: [
     '@nuxtjs/pwa',
@@ -56,8 +57,22 @@ export default {
       }
     }
   },
+  fontawesome: {
+    component: 'fa',
+    suffix: true,
+    icons: {
+      solid: [
+        'faSignInAlt'
+      ]
+    }
+  },
   build: {
     extend (config, ctx) {
+    }
+  },
+  pwa: {
+    icon: {
+      iconSrc: 'static/img/logo.png'
     }
   }
 }

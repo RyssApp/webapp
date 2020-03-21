@@ -8,6 +8,7 @@
     <profile v-if="isLoggedIn" />
     <div v-else class="login">
       <nuxt-link to="/login" class="button">
+        <fa-icon class="icon" icon="sign-in-alt" />
         Login
       </nuxt-link>
     </div>
@@ -55,18 +56,23 @@ export default {
     justify-content: center;
 
     .button {
-      border-radius: 8px;
-      border: solid 1px var(--light-dark);
-      background: var(--lighter);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-radius: 48px;
+      border: solid 1px var(--light);
       color: var(--darker);
+      background: var(--white);
       font-size: 18px;
       font-family: var(--font);
       cursor: pointer;
-      box-shadow: var(--shadow-bottom);
-      padding: 12px;
-      width: 48px;
+      padding: 12px 24px;
       text-align: center;
       user-select: none;
+
+      .icon {
+        margin-right: 8px;
+      }
 
       &:hover {
         transform: translateY(-2px);

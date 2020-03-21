@@ -1,14 +1,17 @@
 <template>
   <div class="footer">
-    <div class="left">
-      <nuxt-link to="/imprint">
+    <div class="links">
+      <nuxt-link class="link" to="/imprint">
         Imprint
       </nuxt-link>
-    </div>
-    <div class="right">
-      <nuxt-link to="/tos">
+      <nuxt-link class="link" to="/tos">
         Terms
       </nuxt-link>
+    </div>
+    <div class="controls">
+      <a class="list floating">
+        P
+      </a>
     </div>
   </div>
 </template>
@@ -20,9 +23,17 @@
   justify-content: space-between;
   padding: 16px;
 
-  .left {
+  .links {
     display: flex;
     flex-direction: row;
+
+    .link {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
   .right {
