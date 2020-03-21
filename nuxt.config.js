@@ -1,4 +1,5 @@
-export default {
+// eslint-disable-next-line nuxt/no-cjs-in-config
+module.exports = {
   mode: 'universal',
   head: {
     title: 'Ryss',
