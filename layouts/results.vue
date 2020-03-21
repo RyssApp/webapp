@@ -2,18 +2,15 @@
   <div id="__content">
     <navbar />
     <nuxt id="__render" />
-    <foot />
   </div>
 </template>
 
 <script>
-import navbar from '@/components/navbar'
-import footer from '@/components/footer'
+import navbar from '@/components/results/navbar'
 
 export default {
   components: {
-    navbar,
-    foot: footer
+    navbar
   }
 }
 </script>
@@ -23,8 +20,16 @@ export default {
   display: flex;
   flex-direction: column;
 
+  .navbar {
+
+  }
+
   #__render {
     flex: 1;
+  }
+
+  .footer {
+
   }
 }
 </style>
