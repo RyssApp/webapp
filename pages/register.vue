@@ -58,7 +58,7 @@ export default {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
 
       if (username.value === '' && email.value === '' && password.value === '') {
-        this.text = 'You have to provide your e-mail address as well as your password!'
+        this.text = 'You have to provide your username, your e-mail address as well as your password!'
       } else if (email.value === '') {
         this.text = 'You have to provide your e-mail address!'
       } else if (password.value === '') {
