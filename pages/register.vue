@@ -16,11 +16,11 @@
         {{ text }}
       </p>
       <div class="controls">
-        <input class="input" type="text" placeholder="Username" autocomplete="off">
-        <input class="input" type="text" placeholder="E-Mail" autocomplete="off">
-        <input class="input" type="password" placeholder="Password">
-        <input class="input" type="password" placeholder="Confirm Password">
-        <a class="button" @click="login()">
+        <input id="username" class="input" type="text" placeholder="Username" autocomplete="off">
+        <input id="email" class="input" type="text" placeholder="E-Mail" autocomplete="off">
+        <input id="password" class="input" type="password" placeholder="Password">
+        <input id="confirmPassword" class="input" type="password" placeholder="Confirm Password">
+        <a class="button" @click="register()">
           <fa-icon class="icon" icon="sign-in-alt" />
           Register
         </a>
@@ -44,8 +44,66 @@ export default {
     }
   },
   methods: {
-    login () {
+    register () {
+      const username = document.getElementById('username')
+      const email = document.getElementById('email')
+      const password = document.getElementById('password')
+      const confirm = document.getElementById('confirmPassword')
 
+      const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
+
+      if (username.value === '' && email.value === '' && password.value === '') {
+        this.text = 'You have to provide your e-mail address as well as your password!'
+      } else if (email.value === '') {
+        this.text = 'You have to provide your e-mail address!'
+      } else if (password.value === '') {
+        this.text = 'You have to provide your password!'
+      } else if (confirm.value === '') {
+        this.text = 'You have to confirm your password!'
+      } else if (username.value.length < 5) {
+        this.text = 'Your username should contain atleast 5 characters!'
+      } else if (username.value.length > 32) {
+        this.text = 'Your username should not exceed 32 characters!'
+      } else if (password.value !== confirm.value) {
+        this.text = 'Your passwords do not equal each other!'
+      } else if (!regex.test(String(email.value).toLowerCase())) {
+        this.text = 'You have to provide a valid e-mail address!'
+      } else {
+        this.text = null
+      }
+    },
+    scorePassword (password) {
+      let score = 0
+      if (!password) { return score }
+
+      const letters = {}
+      for (let i = 0; i < password.length; i++) {
+        letters[password[i]] = (letters[password[i]] || 0) + 1
+        score += 5.0 / letters[password[i]]
+      }
+
+      const variations = {
+        digits: /\d/.test(password),
+        lower: /[a-z]/.test(password),
+        upper: /[A-Z]/.test(password),
+        nonWords: /\W/.test(password)
+      }
+
+      let variationCount = 0
+      for (const check in variations) {
+        variationCount += (variations[check] == true) ? 1 : 0
+      }
+      score += (variationCount - 1) * 10
+
+      return parseInt(score)
+    },
+    checkPasswordStrength (password) {
+      const score = this.scorePassword(password)
+      if (score > 80) { return 'Your password is strong' }
+      if (score > 60) { return 'Your password is good' }
+      if (score >= 30) { return 'Your password is weak' }
+
+      return ''
     }
   }
 }

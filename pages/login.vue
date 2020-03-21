@@ -46,7 +46,7 @@ export default {
       const email = document.getElementById('email')
       const password = document.getElementById('password')
 
-      const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+      const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
 
       if (email.value === '' && password.value === '') {
         this.text = 'You have to provide your e-mail address as well as your password!'
@@ -54,7 +54,7 @@ export default {
         this.text = 'You have to provide your e-mail address!'
       } else if (password.value === '') {
         this.text = 'You have to provide your password!'
-      } else if (!re.test(String(email).toLowerCase())) { // not working
+      } else if (!regex.test(String(email.value).toLowerCase())) { // not working
         this.text = 'You have to provide a valid e-mail address!'
       } else {
         this.text = null
