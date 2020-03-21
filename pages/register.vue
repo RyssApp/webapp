@@ -18,7 +18,10 @@
       <div class="controls">
         <input id="username" class="input" type="text" placeholder="Username" autocomplete="off">
         <input id="email" class="input" type="text" placeholder="E-Mail" autocomplete="off">
-        <input id="password" class="input" type="password" placeholder="Password">
+        <a v-if="passwordStrength" id="strength" class="strength">
+          {{ passwordStrength }}
+        </a>
+        <input id="password" class="input" type="password" placeholder="Password" @keyup="validatePassword()">
         <input id="confirmPassword" class="input" type="password" placeholder="Confirm Password">
         <a class="button" @click="register()">
           <fa-icon class="icon" icon="sign-in-alt" />
@@ -40,7 +43,9 @@ export default {
   layout: 'empty',
   data () {
     return {
-      text: null
+      text: null,
+      passwordStrength: null,
+      colorStrength: null
     }
   },
   methods: {
@@ -72,6 +77,10 @@ export default {
         this.text = null
       }
     },
+    validatePassword () {
+      const password = document.getElementById('password').value
+      this.passwordStrength = this.checkPasswordStrength(password)
+    },
     scorePassword (password) {
       let score = 0
       if (!password) { return score }
@@ -99,11 +108,15 @@ export default {
     },
     checkPasswordStrength (password) {
       const score = this.scorePassword(password)
-      if (score > 80) { return 'Your password is strong' }
-      if (score > 60) { return 'Your password is good' }
-      if (score >= 30) { return 'Your password is weak' }
-
-      return ''
+      if (score > 80) {
+        return 'Your password is strong'
+      } else if (score > 60) {
+        return 'Your password is good'
+      } else if (score >= 30) {
+        return 'Your password is weak'
+      } else {
+        return ''
+      }
     }
   }
 }
@@ -185,6 +198,11 @@ export default {
           box-shadow: var(--shadow-all);
           border: 1px solid var(--light-dark);
         }
+      }
+
+      .strength {
+        font-size: 14px;
+        margin: 2px 0;
       }
 
       .button {
