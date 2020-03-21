@@ -1,16 +1,34 @@
 <template>
   <div class="navbar">
-    <div class="links">
-      <a class="title" href="https://ryss.app">Ryss</a>
+    <div class="top">
+      <nuxt-link to="/" class="title">
+        Ryss
+      </nuxt-link>
     </div>
     <profile v-if="isLoggedIn" />
     <div v-else class="login">
       <nuxt-link to="/login" class="button">
+        <fa-icon class="icon" icon="sign-in-alt" />
         Login
       </nuxt-link>
     </div>
   </div>
 </template>
+
+<script>
+import profile from '@/components/parts/profile'
+
+export default {
+  components: {
+    profile
+  },
+  data () {
+    return {
+      isLoggedIn: this.$auth.isLoggedIn()
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .navbar {
@@ -18,8 +36,9 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 16px;
+  height: 52px;
 
-  .links {
+  .top {
     display: flex;
     flex-direction: row;
 
@@ -37,18 +56,23 @@
     justify-content: center;
 
     .button {
-      border-radius: 8px;
-      border: solid 1px var(--light-dark);
-      background: var(--lighter);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-radius: 48px;
+      border: solid 1px var(--light);
       color: var(--darker);
-      font-size: 16px;
+      background: var(--white);
+      font-size: 18px;
       font-family: var(--font);
       cursor: pointer;
-      box-shadow: var(--shadow-bottom);
-      padding: 8px;
-      width: 48px;
+      padding: 12px 24px;
       text-align: center;
       user-select: none;
+
+      .icon {
+        margin-right: 8px;
+      }
 
       &:hover {
         transform: translateY(-2px);

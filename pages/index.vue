@@ -6,16 +6,25 @@
       </div>
       <div class="controls">
         <div class="search">
-          <input id="bar" class="bar" type="text" @input="completeSearch()" @keyup.enter="searchProducts()">
+          <input
+            id="bar"
+            class="bar"
+            type="text"
+            autocomplete="off"
+            @input="completeSearch()"
+            @keyup.enter="searchProducts()"
+          >
           <a class="submit" @click="searchProducts()">
             <svg class="magnifier" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path class="path" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
           </a>
         </div>
-        <div class="buttons">
-          <a class="button">Shopping List</a>
-          <a class="button" @click="searchProducts()">Search Product</a>
-        </div>
       </div>
+      <p class="text">
+        Search for products in stores near you.
+        <nuxt-link to="/about">
+          Learn more
+        </nuxt-link>
+      </p>
     </div>
   </div>
 </template>
@@ -142,6 +151,48 @@ export default {
           &:focus, &:active {
             transform: translateY(2px);
             box-shadow: none;
+          }
+        }
+      }
+    }
+
+    .text {
+      text-align: center;
+      margin-top: 18px;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .index {
+
+    .wrapper {
+      width: 100%;
+
+      .controls {
+        width: 100%;
+
+        .search {
+          width: 100%;
+
+          .bar {
+            font-size: 16px;
+            border-radius: 48px;
+            border: 1px solid var(--light);
+            padding: 16px 22px;
+            width: 100%;
+            margin: 0 25px;
+            outline: none;
+            transition: var(--transition);
+
+            &:focus, &:active {
+              border: 1px solid var(--light-dark);
+              box-shadow: var(--shadow-all);
+            }
+          }
+
+          .submit {
+            right: 25px;
           }
         }
       }

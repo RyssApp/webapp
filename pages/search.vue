@@ -2,10 +2,27 @@
   <div class="search">
     <div class="wrapper">
       <div class="list">
-        <store v-for="i in 5" :key="i" display-name="Netto Markt GmbH" location="Gauting 82131 Ammerseestraße 116" />
+        <store
+          v-for="store in stores"
+          :key="store.id"
+          :display-name="store.displayName"
+          :location="store.address"
+          :logo-url="store.logo"
+          @click.native="centerMap(store.id)"
+        />
       </div>
       <div class="map">
-        <iframe class="embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6340.982449951475!2d11.355455751553414!3d48.070586958633825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479dd0cd7626bd4d%3A0x32b0fe8913926e8b!2s82131%20Gauting!5e0!3m2!1sen!2sde!4v1584786186688!5m2!1sen!2sde" frameborder="0" aria-hidden="false" tabindex="0" />
+        <client-only>
+          <l-map v-if="currentPosition.length !== 0" :zoom="13" :center="currentPosition">
+            <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+            <l-marker v-for="store in stores" :key="store.id" :lat-lng="[store.latitude, store.longitude]" :name="store.displayName">
+              <l-tooltip>{{ store.displayName }}</l-tooltip>
+            </l-marker>
+          </l-map>
+          <div v-else class="loading">
+            <p>Loading</p>
+          </div>
+        </client-only>
       </div>
     </div>
   </div>
@@ -21,7 +38,65 @@ export default {
   },
   data () {
     return {
-      hallo: 1
+      query: this.getQuery(),
+      currentPosition: [],
+      yourLocation: [],
+      stores: [
+        {
+          id: '1',
+          latitude: '48.664663',
+          longitude: '11.711396',
+          displayName: 'Netto GmbH',
+          logoUrl: '/img/defaultStore.svg',
+          address: '82131 Gauting Ammerseestraße 117'
+        },
+        {
+          id: '2',
+          latitude: '48.657071',
+          longitude: '11.682181',
+          displayName: 'dm-drogerie markt',
+          logoUrl: '/img/defaultStore.svg',
+          address: '82131 Gauting Ammerseestraße 117'
+        },
+        {
+          id: '3',
+          latitude: '48.673400',
+          longitude: '11.679354',
+          displayName: 'REWE',
+          logoUrl: '/img/defaultStore.svg',
+          address: '82131 Gauting Ammerseestraße 117'
+        },
+        {
+          id: '4',
+          latitude: '48.692282',
+          longitude: '11.704026',
+          displayName: 'Edeka',
+          logoUrl: '/img/defaultStore.svg',
+          address: '82131 Gauting Ammerseestraße 117'
+        }
+      ]
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.$router.afterEach((to, from) => {
+        this.changeQuery(to.query.query)
+      })
+      navigator.geolocation.getCurrentPosition((location) => {
+        this.currentPosition = [location.coords.latitude, location.coords.longitude]
+      })
+    })
+  },
+  methods: {
+    centerMap (id) {
+      const store = this.stores.find(store => store.id === id)
+      this.currentPosition = [store.latitude, store.longitude]
+    },
+    getQuery () {
+      return this.$route.query.query
+    },
+    changeQuery (query) {
+      // reload results
     }
   }
 }

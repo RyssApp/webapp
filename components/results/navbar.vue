@@ -5,7 +5,14 @@
         <img class="source" src="/img/logo.svg">
       </nuxt-link>
       <div class="search">
-        <input id="bar" class="bar" type="text" @input="completeSearch()" @keyup.enter="searchProducts()">
+        <input
+          id="bar"
+          class="bar"
+          type="text"
+          autocomplete="off"
+          @input="completeSearch()"
+          @keyup.enter="searchProducts()"
+        >
         <a class="submit" @click="searchProducts()">
           <svg class="magnifier" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path class="path" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
         </a>
@@ -14,6 +21,7 @@
     <profile v-if="isLoggedIn" />
     <div v-else class="login">
       <nuxt-link to="/login" class="button">
+        <fa-icon class="icon" icon="sign-in-alt" />
         Login
       </nuxt-link>
     </div>
@@ -43,7 +51,12 @@ export default {
 
     },
     searchProducts (query) {
+      const input = document.getElementById('bar')
 
+      if (input.value !== '') {
+        this.$router.push(`/search?query=${encodeURIComponent(input.value)}`)
+        input.blur()
+      }
     }
   }
 }
@@ -57,6 +70,7 @@ export default {
   padding: 16px;
   background: var(--lighter);
   border-bottom: solid 1px var(--light);
+  height: 52px;
 
   .wrapper {
     display: flex;
@@ -118,20 +132,26 @@ export default {
   .login {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     .button {
-      border-radius: 8px;
-      border: solid 1px var(--light-dark);
-      background: var(--lighter);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-radius: 48px;
+      border: solid 1px var(--light);
       color: var(--darker);
-      font-size: 16px;
+      background: var(--white);
+      font-size: 18px;
       font-family: var(--font);
       cursor: pointer;
-      box-shadow: var(--shadow-bottom);
-      padding: 8px;
-      width: 48px;
+      padding: 12px 24px;
       text-align: center;
       user-select: none;
+
+      .icon {
+        margin-right: 8px;
+      }
 
       &:hover {
         transform: translateY(-2px);
@@ -140,6 +160,58 @@ export default {
       &:focus, &:active {
         transform: translateY(2px);
         box-shadow: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .navbar {
+
+    .wrapper {
+      width: 100%;
+
+      .search {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        margin: 0 25px 0 0;
+
+        .bar {
+          font-size: 16px;
+          border-radius: 48px;
+          border: 1px solid var(--light);
+          padding: 16px 22px;
+          width: 100%;
+
+          &:focus, &:active {
+            border: 1px solid var(--light-dark);
+            box-shadow: var(--shadow-all);
+          }
+        }
+
+        .submit {
+          height: 52px;
+          width: 52px;
+          position: absolute;
+          right: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 8px;
+          cursor: pointer;
+
+          .magnifier {
+            height: 32px;
+            width: 32px;
+
+            .path {
+              fill: var(--primary-dark);
+            }
+          }
+        }
       }
     }
   }

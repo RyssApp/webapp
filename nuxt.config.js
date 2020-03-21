@@ -5,20 +5,20 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Ryss is searching for products in stores near you.' },
       { hid: 'author', name: 'author', content: 'Oskar Lang' },
       { hid: 'publisher', name: 'publisher', content: 'Ryss App' },
-      { hid: 'image', name: 'image', content: 'TODO' },
+      { hid: 'image', name: 'image', content: 'https://ryss.app/img/logo.png' },
       { hid: 'robots', name: 'robots', content: 'index, follow' },
       { hid: 'application-name', name: 'application-name', content: 'Ryss' },
-      { hid: 'theme-color', name: 'theme-color', content: '#78a4fa' },
+      { hid: 'theme-color', name: 'theme-color', content: '#70d156' },
       { hid: 'og:title', property: 'og:title', content: 'Ryss' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'Ryss' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:url', property: 'og:url', content: 'https://ryss.app' },
-      { hid: 'og:description', property: 'og:description', content: '' },
+      { hid: 'og:description', property: 'og:description', content: 'Ryss is searching for products in stores near you.' },
       { hid: 'og:locale', property: 'og:locale', content: 'en_US' },
-      { hid: 'og:image', property: 'og:image', content: 'TODO' },
+      { hid: 'og:image', property: 'og:image', content: 'https://ryss.app/img/logo.png' },
       { hid: 'og:image:type', property: 'og:image:type', content: 'image/png' },
       { hid: 'og:image:width', property: 'og:image:width', content: '500' },
       { hid: 'og:image:height', property: 'og:image:height', content: '500' },
@@ -40,12 +40,14 @@ export default {
     '@/plugins/auth.js'
   ],
   buildModules: [
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/fontawesome'
   ],
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
-    '@nuxtjs/universal-storage'
+    '@nuxtjs/universal-storage',
+    'nuxt-leaflet'
   ],
   storage: {
     cookie: {
@@ -55,8 +57,22 @@ export default {
       }
     }
   },
+  fontawesome: {
+    component: 'fa',
+    suffix: true,
+    icons: {
+      solid: [
+        'faSignInAlt'
+      ]
+    }
+  },
   build: {
     extend (config, ctx) {
+    }
+  },
+  pwa: {
+    icon: {
+      iconSrc: 'static/img/logo.png'
     }
   }
 }

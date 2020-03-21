@@ -1,5 +1,10 @@
 <template>
   <div class="login">
+    <div class="top">
+      <nuxt-link to="/" class="title">
+        Ryss
+      </nuxt-link>
+    </div>
     <div class="wrapper">
       <nuxt-link to="/" class="logo">
         <img class="source" src="/img/logo.svg">
@@ -11,9 +16,12 @@
         {{ text }}
       </p>
       <div class="controls">
-        <input class="input" type="text" placeholder="E-Mail">
-        <input class="input" type="password" placeholder="Password">
-        <a class="button" @click="login()">Login</a>
+        <input id="email" class="input" type="text" placeholder="E-Mail" autocomplete="off">
+        <input id="password" class="input" type="password" placeholder="Password">
+        <a class="button" @click="login()">
+          <fa-icon class="icon" icon="sign-in-alt" />
+          Login
+        </a>
       </div>
       <p class="question">
         No account yet?
@@ -35,7 +43,22 @@ export default {
   },
   methods: {
     login () {
+      const email = document.getElementById('email')
+      const password = document.getElementById('password')
 
+      const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
+
+      if (email.value === '' && password.value === '') {
+        this.text = 'You have to provide your e-mail address as well as your password!'
+      } else if (email.value === '') {
+        this.text = 'You have to provide your e-mail address!'
+      } else if (password.value === '') {
+        this.text = 'You have to provide your password!'
+      } else if (!regex.test(String(email.value).toLowerCase())) { // not working
+        this.text = 'You have to provide a valid e-mail address!'
+      } else {
+        this.text = null
+      }
     }
   }
 }
@@ -48,13 +71,28 @@ export default {
   justify-content: center;
   align-items: center;
 
+  .top {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+
+    .title {
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: .8px;
+    }
+  }
+
   .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: var(--light);
-    border: solid 1px var(--light-dark);
+    background: var(--lighter);
+    border: solid 1px var(--light);
     height: 700px;
     width: 500px;
     border-radius: 16px;
@@ -91,7 +129,7 @@ export default {
         font-family: var(--font);
         font-size: 14px;
         border-radius: 48px;
-        border: 1px solid var(--light-dark);
+        border: 1px solid var(--light);
         padding: 12px 18px;
         width: 240px;
         outline: none;
@@ -100,23 +138,29 @@ export default {
 
         &:focus, &:active {
           box-shadow: var(--shadow-all);
+          border: 1px solid var(--light-dark);
         }
       }
 
       .button {
-        border-radius: 8px;
-        border: solid 1px var(--light-dark);
-        background: var(--lighter);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 48px;
+        border: solid 1px var(--light);
         color: var(--darker);
+        background: var(--white);
         font-size: 18px;
         font-family: var(--font);
         cursor: pointer;
-        box-shadow: var(--shadow-bottom);
-        padding: 10px 18px;
-        margin-top: 8px;
-        width: 48px;
+        padding: 12px 24px;
         text-align: center;
         user-select: none;
+        margin: 18px 0 8px 0;
+
+        .icon {
+          margin-right: 8px;
+        }
 
         &:hover {
           transform: translateY(-2px);
@@ -131,6 +175,26 @@ export default {
 
     .question {
       margin-top: 12px;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--light);
+      border: none;
+      height: 100%;
+      width: 100%;
+      border-radius: 0;
     }
   }
 }
