@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "cross-env NODE_ENV=production NUXT_PORT=3000 NUXT_HOST=0.0.0.0 node server/index.js",
     "generate": "nuxt generate",
     "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
   },
@@ -16,6 +16,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/fontawesome": "^1.1.2",
+    "cross-env": "^5.2.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/universal-storage": "^0.5.4",
     "node-sass": "^4.13.1",
