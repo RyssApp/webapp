@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      uses: actions/setup-node@v1
+    - run: npm install
+    - name: Run linting
+      run: npm run lint
+    - name: Build docker image
+      env:
+        DOCKER_PASS: ${{ secrets.HUB_PASSWORD }}
+        IMAGE: ryss/webapp
+      run: |
+        echo 'Logging in to Docker Hub'
+        docker login -u theleede -p $DOCKER_PASS
+        echo 'Building Image'
+        docker build -t ${IMAGE} . -f Dockerfile
+        echo 'Tagging Image'
+        docker tag ${IMAGE} ${IMAGE}:latest
+        docker tag ${IMAGE} ${IMAGE}:${GITHUB_SHA::8}
+        echo 'Pushing Image'
+        docker push ${IMAGE}
