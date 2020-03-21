@@ -19,6 +19,12 @@
           </a>
         </div>
       </div>
+      <p class="text">
+        Search for products in stores near you.
+        <nuxt-link to="/about">
+          Learn more
+        </nuxt-link>
+      </p>
     </div>
   </div>
 </template>
@@ -148,6 +154,11 @@ export default {
           }
         }
       }
+    }
+
+    .text {
+      text-align: center;
+      margin-top: 18px;
     }
   }
 }
