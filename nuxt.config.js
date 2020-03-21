@@ -64,7 +64,8 @@ module.exports = {
     suffix: true,
     icons: {
       solid: [
-        'faSignInAlt'
+        'faSignInAlt',
+        'faPen'
       ]
     }
   },

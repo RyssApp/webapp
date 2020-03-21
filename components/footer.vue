@@ -10,7 +10,7 @@
     </div>
     <div class="controls">
       <a class="list floating">
-        P
+        <fa-icon class="icon" icon="pen" />
       </a>
     </div>
   </div>
@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-end;
   padding: 16px;
 
   .links {
@@ -36,9 +37,26 @@
     }
   }
 
-  .right {
+  .controls {
     display: flex;
     flex-direction: row;
+
+    .floating {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 50px;
+      border-radius: 100%;
+      background: var(--primary-dark);
+      box-shadow: var(--shadow-bottom);
+      cursor: pointer;
+
+      .icon {
+        color: var(--white);
+      }
+    }
   }
 }
 </style>
