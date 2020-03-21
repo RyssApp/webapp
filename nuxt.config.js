@@ -28,23 +28,33 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Playfair+Display:700|Quicksand&display=swap' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap' }
     ]
   },
-  loading: { color: '#fff' },
+  loading: { color: '#469c30' },
   css: [
     '@/static/css/reset.css',
     '@/static/css/default.css'
   ],
   plugins: [
+    '@/plugins/auth.js'
   ],
   buildModules: [
     '@nuxtjs/eslint-module'
   ],
   modules: [
     '@nuxtjs/pwa',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/universal-storage'
   ],
+  storage: {
+    cookie: {
+      prefix: 'r_',
+      options: {
+        path: '/'
+      }
+    }
+  },
   build: {
     extend (config, ctx) {
     }

@@ -1,13 +1,13 @@
 <template>
   <div class="navbar">
     <div class="links">
-      <a href="https://ryss.app">Ryss Lol</a>
+      <a class="title" href="https://ryss.app">Ryss</a>
     </div>
-    <div class="user">
-      <div class="avatar">
-        <p>Rxsto</p>
-        <img src="/static/img/rxsto.png">
-      </div>
+    <profile v-if="isLoggedIn" />
+    <div v-else class="login">
+      <nuxt-link to="/login" class="button">
+        Login
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -22,14 +22,42 @@
   .links {
     display: flex;
     flex-direction: row;
+
+    .title {
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: .8px;
+    }
   }
 
-  .user {
+  .login {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
 
-    .avatar {
+    .button {
+      border-radius: 8px;
+      border: solid 1px var(--light-dark);
+      background: var(--lighter);
+      color: var(--darker);
+      font-size: 16px;
+      font-family: var(--font);
+      cursor: pointer;
+      box-shadow: var(--shadow-bottom);
+      padding: 8px;
+      width: 48px;
+      text-align: center;
+      user-select: none;
 
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &:focus, &:active {
+        transform: translateY(2px);
+        box-shadow: none;
+      }
     }
   }
 }

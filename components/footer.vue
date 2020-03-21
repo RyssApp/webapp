@@ -1,9 +1,9 @@
 <template>
   <div class="footer">
-    <div class="links-left">
+    <div class="left">
       <a href="/imprint">Imprint</a>
     </div>
-    <div class="links-right">
+    <div class="right">
       <a href="/tos">Terms</a>
     </div>
   </div>
@@ -16,12 +16,12 @@
   justify-content: space-between;
   padding: 16px;
 
-  .links-left {
+  .left {
     display: flex;
     flex-direction: row;
   }
 
-  .links-right {
+  .right {
     display: flex;
     flex-direction: row;
   }
