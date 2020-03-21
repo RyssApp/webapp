@@ -17,6 +17,7 @@
     "@nuxtjs/universal-storage": "^0.5.4",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
+    "nuxt-leaflet": "0.0.21",
     "sass-loader": "^8.0.2"
   },
   "devDependencies": {

@@ -1,5 +1,10 @@
 <template>
   <div class="login">
+    <div class="top">
+      <nuxt-link to="/" class="title">
+        Ryss
+      </nuxt-link>
+    </div>
     <div class="wrapper">
       <nuxt-link to="/" class="logo">
         <img class="source" src="/img/logo.svg">
@@ -47,6 +52,21 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  .top {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+
+    .title {
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: .8px;
+    }
+  }
 
   .wrapper {
     display: flex;
@@ -107,7 +127,7 @@ export default {
         border-radius: 8px;
         border: solid 1px var(--light-dark);
         background: var(--lighter);
-        color: var(--darker);
+        color: var(--dark);
         font-size: 18px;
         font-family: var(--font);
         cursor: pointer;
@@ -131,6 +151,26 @@ export default {
 
     .question {
       margin-top: 12px;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--light);
+      border: none;
+      height: 100%;
+      width: 100%;
+      border-radius: 0;
     }
   }
 }

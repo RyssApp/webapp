@@ -45,7 +45,8 @@ export default {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
-    '@nuxtjs/universal-storage'
+    '@nuxtjs/universal-storage',
+    'nuxt-leaflet'
   ],
   storage: {
     cookie: {

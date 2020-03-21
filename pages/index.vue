@@ -6,7 +6,14 @@
       </div>
       <div class="controls">
         <div class="search">
-          <input id="bar" class="bar" type="text" @input="completeSearch()" @keyup.enter="searchProducts()">
+          <input
+            id="bar"
+            class="bar"
+            type="text"
+            autocomplete="off"
+            @input="completeSearch()"
+            @keyup.enter="searchProducts()"
+          >
           <a class="submit" @click="searchProducts()">
             <svg class="magnifier" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path class="path" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
           </a>
@@ -147,5 +154,75 @@ export default {
       }
     }
   }
+}
+
+@media only screen and (max-width: 750px) {
+  .index {
+
+    .wrapper {
+      width: 100%;
+
+      .controls {
+        width: 100%;
+
+        .search {
+          width: 100%;
+
+          .bar {
+            font-size: 16px;
+            border-radius: 48px;
+            border: 1px solid var(--light);
+            padding: 16px 22px;
+            width: 100%;
+            margin: 0 25px;
+            outline: none;
+            transition: var(--transition);
+
+            &:focus, &:active {
+              border: 1px solid var(--light-dark);
+              box-shadow: var(--shadow-all);
+            }
+          }
+
+          .submit {
+            right: 25px;
+          }
+        }
+
+        .buttons {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          padding: 25px;
+
+          .button {
+            border-radius: 8px;
+            border: solid 1px var(--light-dark);
+            background: var(--lighter);
+            color: var(--dark-light);
+            padding: 14px;
+            font-size: 18px;
+            font-family: var(--font);
+            cursor: pointer;
+            box-shadow: var(--shadow-bottom);
+            margin: 0 16px;
+            width: 140px;
+            text-align: center;
+            user-select: none;
+
+            &:hover {
+              transform: translateY(-2px);
+            }
+
+            &:focus, &:active {
+              transform: translateY(2px);
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
 </style>

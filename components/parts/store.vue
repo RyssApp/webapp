@@ -45,6 +45,12 @@ export default {
   padding: 16px;
   margin: 0 0 25px 0;
   border-radius: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    box-shadow: var(--shadow-bottom);
+  }
 
   &:last-child {
     margin: 0;
