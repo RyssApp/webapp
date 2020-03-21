@@ -11,6 +11,8 @@
             class="bar"
             type="text"
             autocomplete="off"
+            autofocus
+            placeholder="Search ..."
             @input="completeSearch()"
             @keyup.enter="searchProducts()"
           >
@@ -94,6 +96,7 @@ export default {
           width: 580px;
           outline: none;
           transition: var(--transition);
+          font-family: var(--font);
 
           &:focus, &:active {
             border: 1px solid var(--light-dark);
