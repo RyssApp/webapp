@@ -14,7 +14,7 @@
       <div class="map">
         <client-only>
           <l-map v-if="currentPosition.length !== 0" :zoom="13" :center="currentPosition">
-            <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+            <l-tile-layer url="https://{s}.tile.osm.org/{z}/{x}/{y}.png" />
             <l-marker v-for="store in stores" :key="store.id" :lat-lng="[store.latitude, store.longitude]" :name="store.displayName">
               <l-tooltip>{{ store.displayName }}</l-tooltip>
             </l-marker>
