@@ -1,11 +1,10 @@
-import en from './en-US.js'
-
 export const I18N = {
   locales: [
     {
       code: 'en',
       iso: 'en-US',
-      name: 'English'
+      name: 'English',
+      file: 'en-US.js'
     },
     {
       code: 'de',
@@ -15,11 +14,10 @@ export const I18N = {
   ],
   defaultLocale: 'en',
   vueI18n: {
-    fallbackLocale: 'en',
-    messages: { en }
+    fallbackLocale: 'en'
   },
-  // lazy: true,
-  // langDir: 'i18n/',
+  lazy: true,
+  langDir: 'i18n/',
   detectBrowserLanguage: {
     useCookie: true,
     cookieKey: 'i18n_redirected'
