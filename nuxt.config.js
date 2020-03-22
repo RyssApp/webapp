@@ -98,6 +98,18 @@ module.exports = {
   pwa: {
     icon: {
       iconSrc: 'static/img/logo.png'
+    },
+    meta: {
+      name: 'Ryss',
+      author: 'Ryss',
+      mobileAppIos: true,
+      description: 'A search engine for local products.',
+      twitterSite: 'RyssApp',
+      twitterCreator: 'RyssApp'
+    },
+    manifest: {
+      name: 'Ryss',
+      lang: 'en'
     }
   },
   build: {
