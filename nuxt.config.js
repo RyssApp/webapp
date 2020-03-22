@@ -49,6 +49,7 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     '@nuxtjs/universal-storage',
+    '@nuxtjs/apollo',
     'nuxt-leaflet'
   ],
   storage: {
@@ -67,6 +68,22 @@ module.exports = {
         'faSignInAlt',
         'faPen'
       ]
+    }
+  },
+  apollo: {
+    tokenName: 'r_token',
+    cookieAttributes: {
+      expires: 1
+    },
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://api.ryss.app',
+        browserHttpEndpoint: 'https://api.ryss.app/graphql',
+        httpLinkOptions: {
+          credentials: 'include'
+        },
+        tokenName: 'r_token'
+      }
     }
   },
   build: {
