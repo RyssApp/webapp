@@ -1,0 +1,13 @@
+query stores {
+  stores {
+    id
+    display_name
+    location {
+      address
+      city
+      zip_code
+      latitude
+      longitude
+    }
+  }
+}
