@@ -12,7 +12,7 @@
             type="text"
             autocomplete="off"
             autofocus
-            placeholder="Search ..."
+            :placeholder="$t('mainPage.searchPlaceholder')"
             @input="completeSearch()"
             @keyup.enter="searchProducts()"
           >

@@ -16,8 +16,8 @@
         {{ text }}
       </p>
       <div class="controls">
-        <input id="email" class="input" type="text" placeholder="E-Mail" autocomplete="off">
-        <input id="password" class="input" type="password" placeholder="Password">
+        <input id="email" class="input" type="text" :placeholder="$t('account.email')" autocomplete="off">
+        <input id="password" class="input" type="password" :placeholder="$t('account.password')">
         <a class="button" @click="login()">
           <fa-icon class="icon" icon="sign-in-alt" />
           {{ $t('account.login') }}
