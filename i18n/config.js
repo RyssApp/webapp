@@ -13,7 +13,7 @@ export const I18N = {
       file: 'de-DE.js'
     }
   ],
-  defaultLocale: 'en',
+  defaultLocale: 'de',
   vueI18n: {
     fallbackLocale: 'en'
   },
@@ -21,6 +21,6 @@ export const I18N = {
   langDir: 'i18n/',
   detectBrowserLanguage: {
     useCookie: true,
-    cookieKey: 'i18n_redirected'
+    cookieKey: 'r_language'
   }
 }
