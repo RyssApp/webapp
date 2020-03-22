@@ -10,7 +10,8 @@ export default (context) => {
       mainPage: {
         searchPlaceholder: 'Search ...',
         searchInfo: 'Search for products in stores near you.',
-        aboutUs: 'About Us'
+        aboutUs: 'About Us',
+        WIP: 'This app is a work in progress! Functionality might be missing!'
       },
       account: {
         login: 'Login',

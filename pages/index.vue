@@ -27,6 +27,9 @@
           {{ $t('mainPage.aboutUs') }}
         </nuxt-link>
       </p>
+      <p class="wip">
+        {{ $t('mainPage.WIP') }}
+      </p>
     </div>
   </div>
 </template>
@@ -161,6 +164,12 @@ export default {
 
     .text {
       text-align: center;
+      margin: 18px 48px 0 48px;
+    }
+
+    .wip {
+      text-align: center;
+      color: var(--red);
       margin: 18px 48px 0 48px;
     }
   }
