@@ -34,9 +34,6 @@
               <l-tooltip>{{ store.display_name }}</l-tooltip>
             </l-marker>
           </l-map>
-          <div v-else class="loading">
-            <p>{{ $t("general.loading") }}</p>
-          </div>
         </client-only>
       </div>
     </div>

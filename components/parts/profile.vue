@@ -62,6 +62,7 @@ export default {
       .content {
         display: none;
       }
+    }
 
     .icon {
       margin-right: 8px;
