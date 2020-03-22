@@ -14,13 +14,15 @@
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@nuxtjs/apollo": "^4.0.0-rc19",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/fontawesome": "^1.1.2",
-    "cross-env": "^5.2.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/universal-storage": "^0.5.4",
-    "node-sass": "^4.13.1",
+    "cross-env": "^5.2.0",
     "express": "^4.16.4",
+    "graphql-tag": "^2.10.3",
+    "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "nuxt-leaflet": "0.0.21",
     "sass-loader": "^8.0.2"
