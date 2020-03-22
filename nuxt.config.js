@@ -41,7 +41,8 @@ module.exports = {
     '@/static/css/default.css'
   ],
   plugins: [
-    '@/plugins/auth.js'
+    '@/plugins/auth.js',
+    '@/plugins/query.js'
   ],
   buildModules: [
     '@nuxtjs/eslint-module',
@@ -52,7 +53,7 @@ module.exports = {
     '@nuxtjs/dotenv',
     '@nuxtjs/universal-storage',
     '@nuxtjs/apollo',
-    'nuxt-leaflet'
+    'nuxt-leaflet',
     ['nuxt-i18n', I18N]
   ],
   storage: {
@@ -70,8 +71,11 @@ module.exports = {
       solid: [
         'faSignInAlt',
         'faSignOutAlt',
-        'faPen'
-        'faLanguage'
+        'faPen',
+        'faLanguage',
+        'faCheckCircle',
+        'faTimesCircle',
+        'faTimes'
       ]
     }
   },
@@ -91,16 +95,25 @@ module.exports = {
       }
     }
   },
-  build: {
-    extend (config, ctx) {
-    }
-  },
   pwa: {
     icon: {
       iconSrc: 'static/img/logo.png'
+    },
+    meta: {
+      name: 'Ryss',
+      author: 'Ryss',
+      mobileAppIos: true,
+      description: 'A search engine for local products.',
+      twitterSite: 'RyssApp',
+      twitterCreator: 'RyssApp'
+    },
+    manifest: {
+      name: 'Ryss',
+      lang: 'en'
     }
   },
   build: {
+    transpile: ['vue-instantsearch', 'instantsearch.js/es'],
     extend (config, ctx) {
     }
   }

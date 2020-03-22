@@ -32,7 +32,8 @@ export default (context) => {
           noInput: 'You have to provide your username, your e-mail address as well as your password!'
         },
         loginPage: {
-          noInput: 'You have to provide your e-mail address as well as your password!'
+          noInput: 'You have to provide your e-mail address as well as your password!',
+          eMailVerification: 'We\'ve sent you an email!'
         }
       },
       about: {

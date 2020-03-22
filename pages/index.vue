@@ -161,7 +161,7 @@ export default {
 
     .text {
       text-align: center;
-      margin-top: 18px;
+      margin: 18px 48px 0 48px;
     }
   }
 }

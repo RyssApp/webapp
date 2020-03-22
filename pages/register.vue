@@ -57,7 +57,7 @@
         <a class="button" @click="register()">
           <div v-if="loading" class="lds-ellipsis"><div /><div /><div /><div /></div>
           <fa-icon v-else class="icon" icon="sign-in-alt" />
-          $t("account.register")
+          {{ $t("account.register") }}
         </a>
       </div>
       <p class="question">
