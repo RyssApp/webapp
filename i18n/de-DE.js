@@ -20,7 +20,17 @@ export default (context) => {
         noAccountYet: 'Noch keinen Account?',
         register: 'Registrieren',
         alreadyRegistered: 'Schon ein Konto erstellt?',
-        confirmPassword: 'Passwort bestätigen'
+        confirmPassword: 'Passwort bestätigen',
+        registration: {
+          provideValidEmail: 'Du musst eine gültige E-Mail Addresse angeben!',
+          unequalPasswords: 'Die Passwörter stimmen nicht überein!',
+          usernameTooLong: 'Der Benutzername sollte nicht länger als 32 Zeichen sein!',
+          usernameTooShort: 'Dein Benutzername sollte mindestens 5 Zeichen lang sein!',
+          missingConfirm: 'Du musst dein Passwort bestätigen!',
+          noPassword: 'Du musst ein Password angeben',
+          noEmail: 'Du musst eine E-Mail Addresse angeben!',
+          noInput: 'Du musst einen Benutzernamen, eine E-Mail Adresse und ein Passwort angeben!'
+        }
       },
       about: { wip: 'Wir arbeiten derzeit an einer Informationsseite, bitte habt noch etwas Geduld :)' }
     })
