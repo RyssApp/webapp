@@ -11,7 +11,8 @@ module.exports = {
     '@nuxtjs',
     'plugin:nuxt/recommended'
   ],
-  // add your custom rules here
   rules: {
+    "template-curly-spacing" : "off",
+    indent : "off"
   }
 }
