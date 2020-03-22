@@ -1,0 +1,12 @@
+mutation login($login:String!,$password:String!) {
+  login(login: $login, password: $password) {
+    user {
+      id
+      username
+      display_name
+      flags
+      verified
+    }
+    token
+  }
+}
