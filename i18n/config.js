@@ -1,4 +1,4 @@
-export const I18N = {
+export const i18n = {
   locales: [
     {
       code: 'en',
