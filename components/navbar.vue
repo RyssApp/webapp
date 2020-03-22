@@ -75,7 +75,6 @@ export default {
   },
   methods: {
     getImagePath (iso) {
-      console.log(iso)
       return `/img/lang/${iso}.png`
     }
   }
