@@ -30,7 +30,7 @@
         <input v-model="credentials.password" class="input" type="password" placeholder="Password" @keyup.enter="login()">
         <a class="button" @click="login()">
           <div v-if="loading" class="lds-ellipsis"><div /><div /><div /><div /></div>
-          <fa-icon v-else class="icon" icon="sign-in-alt" />
+          <fa-icon v-else class="icon" icon="sign-in-alt" 
           {{ $t('account.login') }}
         </a>
       </div>

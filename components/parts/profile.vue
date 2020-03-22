@@ -62,6 +62,18 @@ export default {
       .content {
         display: none;
       }
+
+    .icon {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:focus, &:active {
+      transform: translateY(2px);
+      box-shadow: none;
     }
   }
 }
