@@ -12,14 +12,25 @@
       <h2 class="title">
         Login
       </h2>
+      <p v-if="fromRegister" class="email">
+        We've sent you an email!
+      </p>
       <p class="text">
         {{ text }}
       </p>
       <div class="controls">
-        <input id="email" class="input" type="text" placeholder="E-Mail" autocomplete="off">
-        <input id="password" class="input" type="password" placeholder="Password">
+        <input
+          v-model="credentials.login"
+          class="input"
+          type="text"
+          placeholder="E-Mail"
+          autocomplete="off"
+          @keyup.enter="login()"
+        >
+        <input v-model="credentials.password" class="input" type="password" placeholder="Password" @keyup.enter="login()">
         <a class="button" @click="login()">
-          <fa-icon class="icon" icon="sign-in-alt" />
+          <div v-if="loading" class="lds-ellipsis"><div /><div /><div /><div /></div>
+          <fa-icon v-else class="icon" icon="sign-in-alt" />
           Login
         </a>
       </div>
@@ -34,30 +45,56 @@
 </template>
 
 <script>
+import loginUser from '@/gql/auth/loginUser.gql'
+
 export default {
   layout: 'empty',
   data () {
     return {
-      text: null
+      text: null,
+      fromRegister: false,
+      loading: false,
+      credentials: {
+        login: '',
+        password: ''
+      }
     }
   },
+  mounted () {
+    this.$nextTick(() => {
+      // this.$route.query.from === 'register' ? this.fromRegister = true : this.fromRegister = false
+    })
+  },
   methods: {
-    login () {
-      const email = document.getElementById('email')
-      const password = document.getElementById('password')
-
+    async login () {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
 
-      if (email.value === '' && password.value === '') {
+      if (this.credentials.login === '' && this.credentials.password === '') {
         this.text = 'You have to provide your e-mail address as well as your password!'
-      } else if (email.value === '') {
+      } else if (this.credentials.login === '') {
         this.text = 'You have to provide your e-mail address!'
-      } else if (password.value === '') {
+      } else if (this.credentials.password === '') {
         this.text = 'You have to provide your password!'
-      } else if (!regex.test(String(email.value).toLowerCase())) { // not working
-        this.text = 'You have to provide a valid e-mail address!'
+      // }
+      // else if (!regex.test(String(this.credentials.login).toLowerCase())) {
+      //   this.text = 'You have to provide a valid e-mail address!'
       } else {
-        this.text = null
+        this.loading = true
+        try {
+          const result = await this.$apollo.mutate({
+            mutation: loginUser,
+            variables: {
+              login: this.credentials.login,
+              password: this.credentials.password
+            }
+          })
+          const data = result.data
+          this.$store.commit('auth/setUser', data.login.user)
+          this.$auth.login(data.login.token)
+          this.$router.push('/')
+        } catch (error) {
+          console.error(error)
+        }
       }
     }
   }
@@ -113,6 +150,11 @@ export default {
       color: var(--dark);
     }
 
+    .email {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
     .text {
       margin-bottom: 8px;
       width: 240px;
@@ -162,6 +204,50 @@ export default {
           margin-right: 8px;
         }
 
+        .lds-ring {
+          display: inline-block;
+          position: relative;
+          width: 18px;
+          height: 18px;
+        }
+
+        .lds-ellipsis {
+          display: inline-block;
+          position: relative;
+          width: 32px;
+          height: 8px;
+          margin-right: 8px;
+        }
+
+        .lds-ellipsis div {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--dark);
+          animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .lds-ellipsis div:nth-child(1) {
+          left: 0;
+          animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+          left: 0;
+          animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+          left: 12px;
+          animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+          left: 24px;
+          animation: lds-ellipsis3 0.6s infinite;
+        }
+
         &:hover {
           transform: translateY(-2px);
         }
@@ -196,6 +282,33 @@ export default {
       width: 100%;
       border-radius: 0;
     }
+  }
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(12px, 0);
   }
 }
 </style>

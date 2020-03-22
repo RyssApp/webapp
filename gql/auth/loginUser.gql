@@ -4,7 +4,6 @@ mutation login($login:String!,$password:String!) {
       id
       username
       display_name
-      flags
       verified
     }
     token

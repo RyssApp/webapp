@@ -66,6 +66,7 @@ module.exports = {
     icons: {
       solid: [
         'faSignInAlt',
+        'faSignOutAlt',
         'faPen'
       ]
     }
@@ -80,7 +81,7 @@ module.exports = {
         httpEndpoint: 'https://api.ryss.app',
         browserHttpEndpoint: 'https://api.ryss.app/graphql',
         httpLinkOptions: {
-          credentials: 'include'
+          credentials: 'omit'
         },
         tokenName: 'r_token'
       }
