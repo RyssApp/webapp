@@ -2,7 +2,7 @@
   <div class="login">
     <div class="top">
       <nuxt-link to="/" class="title">
-        Ryss
+        {{ $t('ryss') }}
       </nuxt-link>
     </div>
     <div class="wrapper">
@@ -10,7 +10,7 @@
         <img class="source" src="/img/logo.svg">
       </nuxt-link>
       <h2 class="title">
-        Login
+        {{ $t("account.login") }}
       </h2>
       <p class="text">
         {{ text }}
@@ -20,13 +20,13 @@
         <input id="password" class="input" type="password" placeholder="Password">
         <a class="button" @click="login()">
           <fa-icon class="icon" icon="sign-in-alt" />
-          Login
+          {{ $t('account.login') }}
         </a>
       </div>
       <p class="question">
-        No account yet?
+        {{ $t("account.noAccountYet") }}
         <nuxt-link to="/register">
-          Register
+          {{ $t('account.register') }}
         </nuxt-link>
       </p>
     </div>

@@ -2,10 +2,10 @@
   <div class="footer">
     <div class="links">
       <nuxt-link class="link" to="/imprint">
-        Imprint
+        {{ $t("general.imprint") }}
       </nuxt-link>
       <nuxt-link class="link" to="/tos">
-        Terms
+        {{ $t("general.terms") }}
       </nuxt-link>
     </div>
     <div class="controls">

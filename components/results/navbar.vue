@@ -24,7 +24,7 @@
     <div v-else class="login">
       <nuxt-link to="/login" class="button">
         <fa-icon class="icon" icon="sign-in-alt" />
-        Login
+        {{ $t('account.login') }}
       </nuxt-link>
     </div>
   </div>

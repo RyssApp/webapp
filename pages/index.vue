@@ -22,9 +22,9 @@
         </div>
       </div>
       <p class="text">
-        Search for products in stores near you.
+        {{ $t('mainPage.searchInfo') }}
         <nuxt-link to="/about">
-          About us
+          {{ $t('mainPage.aboutUs') }}
         </nuxt-link>
       </p>
     </div>

@@ -2,14 +2,14 @@
   <div class="navbar">
     <div class="top">
       <nuxt-link to="/" class="title">
-        Ryss
+        {{ $t('ryss') }}
       </nuxt-link>
     </div>
     <profile v-if="isLoggedIn" />
     <div v-else class="login">
       <nuxt-link to="/login" class="button">
         <fa-icon class="icon" icon="sign-in-alt" />
-        Login
+        {{ $t("account.login") }}
       </nuxt-link>
     </div>
   </div>

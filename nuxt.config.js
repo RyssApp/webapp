@@ -1,3 +1,5 @@
+import { I18N } from './i18n/config'
+
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
   mode: 'universal',
@@ -49,7 +51,8 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     '@nuxtjs/universal-storage',
-    'nuxt-leaflet'
+    'nuxt-leaflet',
+    ['nuxt-i18n', I18N]
   ],
   storage: {
     cookie: {
