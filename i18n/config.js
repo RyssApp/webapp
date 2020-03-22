@@ -18,8 +18,8 @@ export const I18N = {
     fallbackLocale: 'en',
     messages: { en }
   },
-  lazy: true,
-  langDir: 'i18n/',
+  // lazy: true,
+  // langDir: 'i18n/',
   detectBrowserLanguage: {
     useCookie: true,
     cookieKey: 'i18n_redirected'
