@@ -1,4 +1,4 @@
-const i18n = require('./i18n/config').i18n
+import i18n from './i18n/config'
 
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {

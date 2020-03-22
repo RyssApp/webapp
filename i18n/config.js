@@ -1,4 +1,4 @@
-export const i18n = {
+const i18n = {
   locales: [
     {
       code: 'en',
@@ -24,3 +24,5 @@ export const i18n = {
     cookieKey: 'r_language'
   }
 }
+
+module.exports = i18n
