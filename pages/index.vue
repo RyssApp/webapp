@@ -12,7 +12,7 @@
             type="text"
             autocomplete="off"
             autofocus
-            placeholder="Search ..."
+            :placeholder="$t('mainPage.searchPlaceholder')"
             @input="completeSearch()"
             @keyup.enter="searchProducts()"
           >
@@ -22,9 +22,9 @@
         </div>
       </div>
       <p class="text">
-        Search for products in stores near you.
-        <nuxt-link to="/about">
-          About us
+        {{ $t('mainPage.searchInfo') }}
+        <nuxt-link :to="localePath('/about')">
+          {{ $t('mainPage.aboutUs') }}
         </nuxt-link>
       </p>
     </div>

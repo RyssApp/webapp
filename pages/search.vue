@@ -20,7 +20,7 @@
             </l-marker>
           </l-map>
           <div v-else class="loading">
-            <p>Loading</p>
+            <p>{{ $t("general.loading") }}</p>
           </div>
         </client-only>
       </div>

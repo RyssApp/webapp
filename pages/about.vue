@@ -2,7 +2,7 @@
   <div class="about">
     <div class="wrapper">
       <p class="title">
-        We're working on an about page right now! Thank you for being patient :)
+        {{ $t("about.wip") }}
       </p>
     </div>
   </div>

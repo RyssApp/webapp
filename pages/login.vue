@@ -1,8 +1,8 @@
 <template>
   <div class="login">
     <div class="top">
-      <nuxt-link to="/" class="title">
-        Ryss
+      <nuxt-link :to="localePath('/')" class="title">
+        {{ $t('ryss') }}
       </nuxt-link>
     </div>
     <div class="wrapper">
@@ -10,20 +10,20 @@
         <img class="source" src="/img/logo.svg">
       </nuxt-link>
       <h2 class="title">
-        Login
+        {{ $t("account.login") }}
       </h2>
       <p v-if="fromRegister" class="email">
         We've sent you an email!
       </p>
       <p class="text">
-        {{ text }}
+        {{ $t(text) }}
       </p>
       <div class="controls">
         <input
           v-model="credentials.login"
           class="input"
           type="text"
-          placeholder="E-Mail"
+          :placeholder="$t('account.eMail')"
           autocomplete="off"
           @keyup.enter="login()"
         >
@@ -31,13 +31,13 @@
         <a class="button" @click="login()">
           <div v-if="loading" class="lds-ellipsis"><div /><div /><div /><div /></div>
           <fa-icon v-else class="icon" icon="sign-in-alt" />
-          Login
+          $t('account.login')
         </a>
       </div>
       <p class="question">
-        No account yet?
-        <nuxt-link to="/register">
-          Register
+        {{ $t("account.noAccountYet") }}
+        <nuxt-link :to="localePath('/register')">
+          {{ $t('account.register') }}
         </nuxt-link>
       </p>
     </div>
@@ -69,15 +69,15 @@ export default {
     async login () {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
 
-      if (this.credentials.login === '' && this.credentials.password === '') {
-        this.text = 'You have to provide your e-mail address as well as your password!'
-      } else if (this.credentials.login === '') {
-        this.text = 'You have to provide your e-mail address!'
-      } else if (this.credentials.password === '') {
-        this.text = 'You have to provide your password!'
-      // }
-      // else if (!regex.test(String(this.credentials.login).toLowerCase())) {
-      //   this.text = 'You have to provide a valid e-mail address!'
+      if (email.value === '' && password.value === '') {
+        this.text = 'account.loginPage.noInput'
+      } else if (email.value === '') {
+        this.text = 'account.registration.noEmail'
+      } else if (password.value === '') {
+        this.text = 'account.registration.noPassword'
+    // } else if (!regex.test(String(email.value).toLowerCase()))
+    // {
+    // this.text = 'account.registration.provideValidEmail'
       } else {
         this.loading = true
         try {

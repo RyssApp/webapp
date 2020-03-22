@@ -1,19 +1,19 @@
 <template>
   <div class="register">
     <div class="top">
-      <nuxt-link to="/" class="title">
-        Ryss
+      <nuxt-link :to="localePath('/')" class="title">
+        {{ $t('ryss') }}
       </nuxt-link>
     </div>
     <div class="wrapper">
-      <nuxt-link to="/" class="logo">
+      <nuxt-link :to="localePath('/')" class="logo">
         <img class="source" src="/img/logo.svg">
       </nuxt-link>
       <h2 class="title">
-        Register
+        {{ $t("account.register") }}
       </h2>
       <p v-if="text" class="text">
-        {{ text }}
+        {{ $t(text) }}
       </p>
       <div class="controls">
         <input
@@ -21,7 +21,7 @@
           v-model="credentials.username"
           class="input"
           type="text"
-          placeholder="Username"
+          :placeholder="$t('account.username')"
           autocomplete="off"
           @keyup.enter="register()"
         >
@@ -30,7 +30,7 @@
           v-model="credentials.email"
           class="input"
           type="text"
-          placeholder="E-Mail"
+          :placeholder="$t('account.eMail')"
           autocomplete="off"
           @keyup.enter="register()"
         >
@@ -42,7 +42,7 @@
           v-model="credentials.password"
           class="input"
           type="password"
-          placeholder="Password"
+          :placeholder="$t('account.password')"
           @keyup="validatePassword()"
           @keyup.enter="register()"
         >
@@ -51,19 +51,19 @@
           v-model="credentials.confirm"
           class="input"
           type="password"
-          placeholder="Confirm Password"
+          :placeholder="$t('account.confirmPassword')"
           @keyup.enter="register()"
         >
         <a class="button" @click="register()">
           <div v-if="loading" class="lds-ellipsis"><div /><div /><div /><div /></div>
           <fa-icon v-else class="icon" icon="sign-in-alt" />
-          Register
+          $t("account.register")
         </a>
       </div>
       <p class="question">
-        Already registered?
-        <nuxt-link to="/login">
-          Login
+        {{ $t('account.alreadyRegistered') }}
+        <nuxt-link :to="localePath('/login')">
+          {{ $t("account.login") }}
         </nuxt-link>
       </p>
     </div>

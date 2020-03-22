@@ -1,3 +1,5 @@
+import { I18N } from './i18n/config'
+
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
   mode: 'universal',
@@ -51,6 +53,7 @@ module.exports = {
     '@nuxtjs/universal-storage',
     '@nuxtjs/apollo',
     'nuxt-leaflet'
+    ['nuxt-i18n', I18N]
   ],
   storage: {
     cookie: {
@@ -68,6 +71,7 @@ module.exports = {
         'faSignInAlt',
         'faSignOutAlt',
         'faPen'
+        'faLanguage'
       ]
     }
   },
@@ -94,6 +98,10 @@ module.exports = {
   pwa: {
     icon: {
       iconSrc: 'static/img/logo.png'
+    }
+  },
+  build: {
+    extend (config, ctx) {
     }
   }
 }
