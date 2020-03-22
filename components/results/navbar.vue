@@ -45,7 +45,9 @@
     <div v-else class="login">
       <nuxt-link :to="localePath('/login')" class="button">
         <fa-icon class="icon" icon="sign-in-alt" />
-        {{ $t('account.login') }}
+        <p class="content">
+          {{ $t('account.login') }}
+        </p>
       </nuxt-link>
     </div>
   </div>
@@ -339,6 +341,34 @@ export default {
               fill: var(--primary-dark);
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+
+    .wrapper {
+
+      .logo {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .navbar {
+
+    .login {
+
+      .button {
+        padding: 12px 10px 12px 14px;
+
+        .content {
+          display: none;
         }
       }
     }

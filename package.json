@@ -19,6 +19,7 @@
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/universal-storage": "^0.5.4",
+    "algoliasearch": "^4.1.0",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "graphql-tag": "^2.10.3",
@@ -26,7 +27,8 @@
     "nuxt": "^2.0.0",
     "nuxt-i18n": "^6.6.1",
     "nuxt-leaflet": "0.0.21",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-instantsearch": "^2.7.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",

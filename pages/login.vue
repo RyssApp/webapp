@@ -13,7 +13,7 @@
         {{ $t("account.login") }}
       </h2>
       <p v-if="fromRegister" class="email">
-        We've sent you an email!
+        {{ $t('eMailVerification') }}
       </p>
       <p class="text">
         {{ $t(text) }}
@@ -31,7 +31,7 @@
         <a class="button" @click="login()">
           <div v-if="loading" class="lds-ellipsis"><div /><div /><div /><div /></div>
           <fa-icon v-else class="icon" icon="sign-in-alt" />
-          $t('account.login')
+          {{ $t('account.login') }}
         </a>
       </div>
       <p class="question">
@@ -69,15 +69,15 @@ export default {
     async login () {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
 
-      if (email.value === '' && password.value === '') {
+      if (this.credentials.login === '' && this.credentials.password === '') {
         this.text = 'account.loginPage.noInput'
-      } else if (email.value === '') {
+      } else if (this.credentials.login === '') {
         this.text = 'account.registration.noEmail'
-      } else if (password.value === '') {
+      } else if (this.credentials.password === '') {
         this.text = 'account.registration.noPassword'
-    // } else if (!regex.test(String(email.value).toLowerCase()))
-    // {
-    // this.text = 'account.registration.provideValidEmail'
+      // } else if (!regex.test(String(this.credentials.login).toLowerCase()))
+      // {
+      // this.text = 'account.registration.provideValidEmail'
       } else {
         this.loading = true
         try {

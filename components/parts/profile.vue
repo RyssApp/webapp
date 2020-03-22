@@ -2,7 +2,7 @@
   <div class="profile">
     <a class="button" @click="logout()">
       <fa-icon class="icon" icon="sign-out-alt" />
-      Logout
+      <p class="content">Logout</p>
     </a>
   </div>
 </template>
@@ -49,6 +49,19 @@ export default {
     &:focus, &:active {
       transform: translateY(2px);
       box-shadow: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .profile {
+
+    .button {
+      padding: 12px 10px 12px 14px;
+
+      .content {
+        display: none;
+      }
     }
   }
 }

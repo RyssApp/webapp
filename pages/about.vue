@@ -30,6 +30,9 @@ export default {
 
     .title {
       font-size: 24px;
+      text-align: center;
+      margin: 0 32px;
+      color: var(--dark);
     }
   }
 }
