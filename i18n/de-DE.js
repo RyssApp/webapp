@@ -3,22 +3,26 @@ export default (context) => {
     resolve({
       ryss: 'Ryss',
       general: {
-        imprint: 'Impessum',
-        terms: 'Nutzungsbestimmungen'
+        imprint: 'Impressum',
+        terms: 'Nutzungsbestimmungen',
+        loading: 'Laden'
       },
       mainPage: {
-        searchPlaceholder: 'Search ...',
-        searchInfo: 'Search for products in stores near you.',
+        searchPlaceholder: 'Suchen...',
+        searchInfo: 'Suche Produkte in Läden in deiner Nähe.',
         aboutUs: 'Über Uns'
       },
       account: {
         login: 'Anmelden',
         eMail: 'E-Mail',
+        username: 'Benutzername',
         password: 'Passwort',
-        noAccountYet: 'No Account yet?',
-        register: 'Registrieren'
+        noAccountYet: 'Noch keinen Account?',
+        register: 'Registrieren',
+        alreadyRegistered: 'Schon ein Konto erstellt?',
+        confirmPassword: 'Passwort bestätigen'
       },
-      about: { wip: 'We\'re working on an about page right now! Thank you for being patient :)' }
+      about: { wip: 'Wir arbeiten derzeit an einer Informationsseite, bitte habt noch etwas Geduld :)' }
     })
   })
 }
