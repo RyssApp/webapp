@@ -9,7 +9,8 @@ export const I18N = {
     {
       code: 'de',
       iso: 'de-DE',
-      name: 'Deutsch'
+      name: 'Deutsch',
+      file: 'de-DE.js'
     }
   ],
   defaultLocale: 'en',
