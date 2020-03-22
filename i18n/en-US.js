@@ -27,9 +27,12 @@ export default (context) => {
           usernameTooLong: 'Your username should not exceed 32 characters!',
           usernameTooShort: 'Your username should contain atleast 5 characters!',
           missingConfirm: 'You have to confirm your password!',
-          noPassword: 'You have to provide your password',
+          noPassword: 'You have to provide your password!',
           noEmail: 'You have to provide your e-mail address!',
           noInput: 'You have to provide your username, your e-mail address as well as your password!'
+        },
+        loginPage: {
+          noInput: 'You have to provide your e-mail address as well as your password!'
         }
       },
       about: {

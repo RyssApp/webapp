@@ -13,7 +13,7 @@
         {{ $t("account.login") }}
       </h2>
       <p class="text">
-        {{ text }}
+        {{ $t(text) }}
       </p>
       <div class="controls">
         <input id="email" class="input" type="text" :placeholder="$t('account.eMail')" autocomplete="off">
@@ -49,13 +49,13 @@ export default {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
 
       if (email.value === '' && password.value === '') {
-        this.text = 'You have to provide your e-mail address as well as your password!'
+        this.text = 'account.loginPage.noInput'
       } else if (email.value === '') {
-        this.text = 'You have to provide your e-mail address!'
+        this.text = 'account.registration.noEmail'
       } else if (password.value === '') {
-        this.text = 'You have to provide your password!'
+        this.text = 'account.registration.noPassword'
       } else if (!regex.test(String(email.value).toLowerCase())) { // not working
-        this.text = 'You have to provide a valid e-mail address!'
+        this.text = 'account.registration.provideValidEmail'
       } else {
         this.text = null
       }
