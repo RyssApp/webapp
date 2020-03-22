@@ -1,10 +1,10 @@
 <template>
   <div class="footer">
     <div class="links">
-      <nuxt-link class="link" to="/imprint">
+      <nuxt-link class="link" :to="localePath('/imprint')">
         {{ $t("general.imprint") }}
       </nuxt-link>
-      <nuxt-link class="link" to="/tos">
+      <nuxt-link class="link" :to="localePath('/tos')">
         {{ $t("general.terms") }}
       </nuxt-link>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="top">
-      <nuxt-link to="/" class="title">
+      <nuxt-link :to="localePath('/')" class="title">
         {{ $t('ryss') }}
       </nuxt-link>
     </div>
@@ -28,7 +28,7 @@
     </div>
     <profile v-if="isLoggedIn" />
     <div v-else class="login">
-      <nuxt-link to="/login" class="button">
+      <nuxt-link :to="localePath('/login')" class="button">
         <fa-icon class="icon" icon="sign-in-alt" />
         {{ $t("account.login") }}
       </nuxt-link>

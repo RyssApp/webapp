@@ -1,37 +1,37 @@
 <template>
   <div class="register">
     <div class="top">
-      <nuxt-link to="/" class="title">
+      <nuxt-link :to="localePath('/')" class="title">
         Ryss
       </nuxt-link>
     </div>
     <div class="wrapper">
-      <nuxt-link to="/" class="logo">
+      <nuxt-link :to="localePath('/')" class="logo">
         <img class="source" src="/img/logo.svg">
       </nuxt-link>
       <h2 class="title">
-        Register
+        {{ $t("account.register") }}
       </h2>
       <p v-if="text" class="text">
         {{ text }}
       </p>
       <div class="controls">
-        <input id="username" class="input" type="text" placeholder="Username" autocomplete="off">
-        <input id="email" class="input" type="text" placeholder="E-Mail" autocomplete="off">
+        <input id="username" class="input" type="text" :placeholder="$t('account.username')" autocomplete="off">
+        <input id="email" class="input" type="text" :placeholder="$t('account.eMail')" autocomplete="off">
         <a v-if="passwordStrength" id="strength" class="strength">
           {{ passwordStrength }}
         </a>
-        <input id="password" class="input" type="password" placeholder="Password" @keyup="validatePassword()">
-        <input id="confirmPassword" class="input" type="password" placeholder="Confirm Password">
+        <input id="password" class="input" type="password" :placeholder="$t('account.password')" @keyup="validatePassword()">
+        <input id="confirmPassword" class="input" type="password" :placeholder="$t('account.confirmPassword')">
         <a class="button" @click="register()">
           <fa-icon class="icon" icon="sign-in-alt" />
-          Register
+          {{ $t("account.register") }}
         </a>
       </div>
       <p class="question">
-        Already registered?
-        <nuxt-link to="/login">
-          Login
+        {{ $t('account.alreadyRegistered') }}
+        <nuxt-link :to="localePath('/login')">
+          {{ $t("account.login") }}
         </nuxt-link>
       </p>
     </div>

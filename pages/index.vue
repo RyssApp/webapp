@@ -23,7 +23,7 @@
       </div>
       <p class="text">
         {{ $t('mainPage.searchInfo') }}
-        <nuxt-link to="/about">
+        <nuxt-link :to="localePath('/about')">
           {{ $t('mainPage.aboutUs') }}
         </nuxt-link>
       </p>

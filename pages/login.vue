@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="top">
-      <nuxt-link to="/" class="title">
+      <nuxt-link :to="localePath('/')" class="title">
         {{ $t('ryss') }}
       </nuxt-link>
     </div>
@@ -16,7 +16,7 @@
         {{ text }}
       </p>
       <div class="controls">
-        <input id="email" class="input" type="text" :placeholder="$t('account.email')" autocomplete="off">
+        <input id="email" class="input" type="text" :placeholder="$t('account.eMail')" autocomplete="off">
         <input id="password" class="input" type="password" :placeholder="$t('account.password')">
         <a class="button" @click="login()">
           <fa-icon class="icon" icon="sign-in-alt" />
@@ -25,7 +25,7 @@
       </div>
       <p class="question">
         {{ $t("account.noAccountYet") }}
-        <nuxt-link to="/register">
+        <nuxt-link :to="localePath('/register')">
           {{ $t('account.register') }}
         </nuxt-link>
       </p>

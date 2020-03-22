@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="wrapper">
-      <nuxt-link to="/" class="logo">
+      <nuxt-link :to="localePath('/')" class="logo">
         <img class="source" src="/img/logo.svg">
       </nuxt-link>
       <div class="search">
@@ -43,7 +43,7 @@
     </div>
     <profile v-if="isLoggedIn" />
     <div v-else class="login">
-      <nuxt-link to="/login" class="button">
+      <nuxt-link :to="localePath('/login')" class="button">
         <fa-icon class="icon" icon="sign-in-alt" />
         {{ $t('account.login') }}
       </nuxt-link>
