@@ -10,7 +10,8 @@ export default (context) => {
       mainPage: {
         searchPlaceholder: 'Suchen...',
         searchInfo: 'Überprüfe die Verfügbarkeit für Produkte in lokalen Geschäften.',
-        aboutUs: 'Über Uns'
+        aboutUs: 'Über Uns',
+        WIP: 'Diese App ist noch in Entwicklung! Funktionalität ist möglicherweise nicht vorhanden!'
       },
       account: {
         login: 'Anmelden',
