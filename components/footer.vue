@@ -1,16 +1,17 @@
 <template>
   <div class="footer">
     <div class="links">
-      <nuxt-link class="link" to="/imprint">
-        Imprint
+      <nuxt-link class="link" :to="localePath('/imprint')">
+        {{ $t("general.imprint") }}
       </nuxt-link>
-      <nuxt-link class="link" to="/tos">
-        Terms
+      <nuxt-link class="link" :to="localePath('/tos')">
+        {{ $t("general.terms") }}
       </nuxt-link>
     </div>
     <div class="controls">
       <a class="list floating">
         <fa-icon class="icon" icon="pen" />
+        <p class="tooltip">Coming soon!</p>
       </a>
     </div>
   </div>
@@ -52,8 +53,29 @@
       background: var(--primary-dark);
       box-shadow: var(--shadow-bottom);
       cursor: pointer;
+      position: relative;
+
+      &:hover {
+
+        .tooltip {
+          display: flex;
+        }
+      }
 
       .icon {
+        color: var(--white);
+      }
+
+      .tooltip {
+        display: none;
+        position: absolute;
+        padding: 12px;
+        border-radius: 8px;
+        background: var(--darker);
+        box-shadow: var(--shadow-bottom);
+        bottom: 0;
+        right: 0;
+        transform: translateX(-64px);
         color: var(--white);
       }
     }

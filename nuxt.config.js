@@ -1,3 +1,5 @@
+import { I18N } from './i18n/config'
+
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
   mode: 'universal',
@@ -49,7 +51,9 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     '@nuxtjs/universal-storage',
+    '@nuxtjs/apollo',
     'nuxt-leaflet'
+    ['nuxt-i18n', I18N]
   ],
   storage: {
     cookie: {
@@ -65,8 +69,26 @@ module.exports = {
     icons: {
       solid: [
         'faSignInAlt',
+        'faSignOutAlt',
         'faPen'
+        'faLanguage'
       ]
+    }
+  },
+  apollo: {
+    tokenName: 'r_token',
+    cookieAttributes: {
+      expires: 1
+    },
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://api.ryss.app',
+        browserHttpEndpoint: 'https://api.ryss.app/graphql',
+        httpLinkOptions: {
+          credentials: 'omit'
+        },
+        tokenName: 'r_token'
+      }
     }
   },
   build: {
@@ -76,6 +98,10 @@ module.exports = {
   pwa: {
     icon: {
       iconSrc: 'static/img/logo.png'
+    }
+  },
+  build: {
+    extend (config, ctx) {
     }
   }
 }

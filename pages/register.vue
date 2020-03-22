@@ -1,37 +1,69 @@
 <template>
   <div class="register">
     <div class="top">
-      <nuxt-link to="/" class="title">
-        Ryss
+      <nuxt-link :to="localePath('/')" class="title">
+        {{ $t('ryss') }}
       </nuxt-link>
     </div>
     <div class="wrapper">
-      <nuxt-link to="/" class="logo">
+      <nuxt-link :to="localePath('/')" class="logo">
         <img class="source" src="/img/logo.svg">
       </nuxt-link>
       <h2 class="title">
-        Register
+        {{ $t("account.register") }}
       </h2>
       <p v-if="text" class="text">
-        {{ text }}
+        {{ $t(text) }}
       </p>
       <div class="controls">
-        <input id="username" class="input" type="text" placeholder="Username" autocomplete="off">
-        <input id="email" class="input" type="text" placeholder="E-Mail" autocomplete="off">
+        <input
+          id="username"
+          v-model="credentials.username"
+          class="input"
+          type="text"
+          :placeholder="$t('account.username')"
+          autocomplete="off"
+          @keyup.enter="register()"
+        >
+        <input
+          id="email"
+          v-model="credentials.email"
+          class="input"
+          type="text"
+          :placeholder="$t('account.eMail')"
+          autocomplete="off"
+          @keyup.enter="register()"
+        >
         <a v-if="passwordStrength" id="strength" class="strength">
           {{ passwordStrength }}
         </a>
-        <input id="password" class="input" type="password" placeholder="Password" @keyup="validatePassword()">
-        <input id="confirmPassword" class="input" type="password" placeholder="Confirm Password">
+        <input
+          id="password"
+          v-model="credentials.password"
+          class="input"
+          type="password"
+          :placeholder="$t('account.password')"
+          @keyup="validatePassword()"
+          @keyup.enter="register()"
+        >
+        <input
+          id="confirmPassword"
+          v-model="credentials.confirm"
+          class="input"
+          type="password"
+          :placeholder="$t('account.confirmPassword')"
+          @keyup.enter="register()"
+        >
         <a class="button" @click="register()">
-          <fa-icon class="icon" icon="sign-in-alt" />
-          Register
+          <div v-if="loading" class="lds-ellipsis"><div /><div /><div /><div /></div>
+          <fa-icon v-else class="icon" icon="sign-in-alt" />
+          $t("account.register")
         </a>
       </div>
       <p class="question">
-        Already registered?
-        <nuxt-link to="/login">
-          Login
+        {{ $t('account.alreadyRegistered') }}
+        <nuxt-link :to="localePath('/login')">
+          {{ $t("account.login") }}
         </nuxt-link>
       </p>
     </div>
@@ -39,42 +71,63 @@
 </template>
 
 <script>
+import registerUser from '@/gql/auth/registerUser.gql'
+
 export default {
   layout: 'empty',
   data () {
     return {
       text: null,
       passwordStrength: null,
-      colorStrength: null
+      colorStrength: null,
+      loading: false,
+      credentials: {
+        username: '',
+        email: '',
+        password: '',
+        confirm: ''
+      }
     }
   },
   methods: {
-    register () {
-      const username = document.getElementById('username')
-      const email = document.getElementById('email')
-      const password = document.getElementById('password')
-      const confirm = document.getElementById('confirmPassword')
-
+    async register () {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
 
-      if (username.value === '' && email.value === '' && password.value === '') {
+      if (this.credentials.username === '' && this.credentials.email === '' && this.credentials.password === '') {
         this.text = 'You have to provide your username, your e-mail address as well as your password!'
-      } else if (email.value === '') {
+      } else if (this.credentials.email === '') {
         this.text = 'You have to provide your e-mail address!'
-      } else if (password.value === '') {
+      } else if (this.credentials.password === '') {
         this.text = 'You have to provide your password!'
-      } else if (confirm.value === '') {
+      } else if (this.credentials.confirm === '') {
         this.text = 'You have to confirm your password!'
-      } else if (username.value.length < 5) {
-        this.text = 'Your username should contain atleast 5 characters!'
-      } else if (username.value.length > 32) {
-        this.text = 'Your username should not exceed 32 characters!'
-      } else if (password.value !== confirm.value) {
+      } else if (this.credentials.password.length > 256) {
+        this.text = 'Your password should not exceed 256 characters!'
+      } else if (this.credentials.password.length < 8) {
+        this.text = 'Your password should contain atleast 8 characters!'
+      } else if (this.credentials.username.length < 3) {
+        this.text = 'Your username should contain atleast 3 characters!'
+      } else if (this.credentials.username.length > 20) {
+        this.text = 'Your username should not exceed 20 characters!'
+      } else if (this.credentials.password !== this.credentials.confirm) {
         this.text = 'Your passwords do not equal each other!'
-      } else if (!regex.test(String(email.value).toLowerCase())) {
+      } else if (!regex.test(String(this.credentials.email).toLowerCase())) {
         this.text = 'You have to provide a valid e-mail address!'
       } else {
-        this.text = null
+        this.loading = true
+        try {
+          await this.$apollo.mutate({
+            mutation: registerUser,
+            variables: {
+              username: this.credentials.username,
+              email: this.credentials.email,
+              password: this.credentials.password
+            }
+          })
+          this.$router.push('/login?from=register')
+        } catch (error) {
+          console.error(error)
+        }
       }
     },
     validatePassword () {
@@ -115,7 +168,7 @@ export default {
       } else if (score >= 30) {
         return 'Your password is weak'
       } else {
-        return ''
+        return 'Your password is very weak'
       }
     }
   }
@@ -225,6 +278,50 @@ export default {
           margin-right: 8px;
         }
 
+        .lds-ring {
+          display: inline-block;
+          position: relative;
+          width: 18px;
+          height: 18px;
+        }
+
+        .lds-ellipsis {
+          display: inline-block;
+          position: relative;
+          width: 32px;
+          height: 8px;
+          margin-right: 8px;
+        }
+
+        .lds-ellipsis div {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--dark);
+          animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .lds-ellipsis div:nth-child(1) {
+          left: 0;
+          animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+          left: 0;
+          animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+          left: 12px;
+          animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+          left: 24px;
+          animation: lds-ellipsis3 0.6s infinite;
+        }
+
         &:hover {
           transform: translateY(-2px);
         }
@@ -259,6 +356,33 @@ export default {
       width: 100%;
       border-radius: 0;
     }
+  }
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(12px, 0);
   }
 }
 </style>

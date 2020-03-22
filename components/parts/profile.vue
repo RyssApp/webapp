@@ -1,33 +1,54 @@
 <template>
   <div class="profile">
-    <div class="avatar">
-      <img class="source" src="/img/rxsto.png">
-    </div>
+    <a class="button" @click="logout()">
+      <fa-icon class="icon" icon="sign-out-alt" />
+      Logout
+    </a>
   </div>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    logout () {
+      this.$auth.logout()
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-  .user {
+  .button {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    border-radius: 48px;
+    border: solid 1px var(--light);
+    color: var(--darker);
+    background: var(--white);
+    font-size: 18px;
+    font-family: var(--font);
+    cursor: pointer;
+    padding: 12px 24px;
+    text-align: center;
+    user-select: none;
 
-    .avatar {
-      width: 50px;
-      height: auto;
+    .icon {
+      margin-right: 8px;
+    }
 
-      .source {
-        width: 50px;
-        height: auto;
-        border-radius: 100%;
-      }
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:focus, &:active {
+      transform: translateY(2px);
+      box-shadow: none;
     }
   }
 }

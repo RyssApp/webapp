@@ -1,20 +1,20 @@
-export default ({ app, store, redirect }, inject) => {
+export default ({ app }, inject) => {
   const auth = {
     getToken () {
-      const token = app.$storage.getCookie('token')
-      if (token !== null) {
-        return token
-      } else {
-        return redirect('/login')
-      }
+      return app.$apolloHelpers.getToken()
     },
 
     isLoggedIn () {
-      return typeof app.$storage.getCookie('token') !== 'undefined'
+      return typeof this.getToken() === 'string'
     },
 
     logout () {
-      app.$storage.removeCookie('token')
+      app.$apolloHelpers.onLogout()
+      window.location.reload()
+    },
+
+    login (token) {
+      app.$apolloHelpers.onLogin(token)
     }
   }
 
