@@ -24,8 +24,8 @@ export default (context) => {
         registration: {
           provideValidEmail: 'You have to provide a valid e-mail address!',
           unequalPasswords: 'Your passwords do not equal each other!',
-          passwordTooLong: 'Your username should not exceed 32 characters!',
-          passwordTooShort: 'Your username should contain atleast 5 characters!',
+          usernameTooLong: 'Your username should not exceed 32 characters!',
+          usernameTooShort: 'Your username should contain atleast 5 characters!',
           missingConfirm: 'You have to confirm your password!',
           noPassword: 'You have to provide your password',
           noEmail: 'You have to provide your e-mail address!',

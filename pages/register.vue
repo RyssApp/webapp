@@ -66,9 +66,9 @@ export default {
       } else if (confirm.value === '') {
         this.text = 'account.registration.missingConfirm'
       } else if (username.value.length < 5) {
-        this.text = 'account.registration.passwordTooShort'
+        this.text = 'account.registration.usernameTooShort'
       } else if (username.value.length > 32) {
-        this.text = 'account.registration.passwordTooLong'
+        this.text = 'account.registration.usernameTooLong'
       } else if (password.value !== confirm.value) {
         this.text = 'account.registration.unequalPasswords'
       } else if (!regex.test(String(email.value).toLowerCase())) {
