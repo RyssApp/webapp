@@ -2,7 +2,7 @@
   <div class="register">
     <div class="top">
       <nuxt-link :to="localePath('/')" class="title">
-        Ryss
+        {{ $t('ryss') }}
       </nuxt-link>
     </div>
     <div class="wrapper">
@@ -13,7 +13,7 @@
         {{ $t("account.register") }}
       </h2>
       <p v-if="text" class="text">
-        {{ text }}
+        {{ $t(text) }}
       </p>
       <div class="controls">
         <input id="username" class="input" type="text" :placeholder="$t('account.username')" autocomplete="off">
@@ -58,21 +58,21 @@ export default {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ // eslint-disable-line
 
       if (username.value === '' && email.value === '' && password.value === '') {
-        this.text = 'You have to provide your username, your e-mail address as well as your password!'
+        this.text = 'account.registration.noInput'
       } else if (email.value === '') {
-        this.text = 'You have to provide your e-mail address!'
+        this.text = 'account.registration.noEmail'
       } else if (password.value === '') {
-        this.text = 'You have to provide your password!'
+        this.text = 'account.registration.noPassword'
       } else if (confirm.value === '') {
-        this.text = 'You have to confirm your password!'
+        this.text = 'account.registration.missingConfirm'
       } else if (username.value.length < 5) {
-        this.text = 'Your username should contain atleast 5 characters!'
+        this.text = 'account.registration.passwordTooShort'
       } else if (username.value.length > 32) {
-        this.text = 'Your username should not exceed 32 characters!'
+        this.text = 'account.registration.passwordTooLong'
       } else if (password.value !== confirm.value) {
-        this.text = 'Your passwords do not equal each other!'
+        this.text = 'account.registration.unequalPasswords'
       } else if (!regex.test(String(email.value).toLowerCase())) {
-        this.text = 'You have to provide a valid e-mail address!'
+        this.text = 'account.registration.provideValidEmail'
       } else {
         this.text = null
       }

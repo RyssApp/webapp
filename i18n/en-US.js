@@ -20,7 +20,17 @@ export default (context) => {
         noAccountYet: 'No Account yet?',
         register: 'Register',
         alreadyRegistered: 'Already registered?',
-        confirmPassword: 'Confirm Password'
+        confirmPassword: 'Confirm Password',
+        registration: {
+          provideValidEmail: 'You have to provide a valid e-mail address!',
+          unequalPasswords: 'Your passwords do not equal each other!',
+          passwordTooLong: 'Your username should not exceed 32 characters!',
+          passwordTooShort: 'Your username should contain atleast 5 characters!',
+          missingConfirm: 'You have to confirm your password!',
+          noPassword: 'You have to provide your password',
+          noEmail: 'You have to provide your e-mail address!',
+          noInput: 'You have to provide your username, your e-mail address as well as your password!'
+        }
       },
       about: {
         wip: 'We\'re working on an about page right now! Thank you for being patient :)'
