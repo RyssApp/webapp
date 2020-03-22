@@ -20,6 +20,27 @@
         </a>
       </div>
     </div>
+    <div class="span" />
+    <div class="language">
+      <div id="language-icon" class="symbol">
+        <fa-icon class="icon" icon="language" />
+      </div>
+      <div id="language-picker" class="picker">
+        <div class="wrapper">
+          <nuxt-link
+            v-for="locale in locales"
+            :key="locale.code"
+            class="language"
+            :to="switchLocalePath(locale.code)"
+          >
+            <img class="flag" :src="getImagePath(locale.iso)">
+            <p class="name">
+              {{ locale.name }}
+            </p>
+          </nuxt-link>
+        </div>
+      </div>
+    </div>
     <profile v-if="isLoggedIn" />
     <div v-else class="login">
       <nuxt-link to="/login" class="button">
@@ -39,13 +60,33 @@ export default {
   },
   data () {
     return {
-      isLoggedIn: this.$auth.isLoggedIn()
+      isLoggedIn: this.$auth.isLoggedIn(),
+      locales: this.$i18n.locales
     }
   },
   mounted () {
     this.$nextTick(() => {
       const input = document.getElementById('bar')
       input.value = this.$route.query.query
+
+      const languageIcon = document.getElementById('language-icon')
+      const languagePicker = document.getElementById('language-picker')
+
+      languageIcon.onmouseenter = (event) => {
+        languagePicker.style.display = 'flex'
+      }
+
+      languageIcon.onmouseleave = (event) => {
+        languagePicker.style.display = 'none'
+      }
+
+      languagePicker.onmouseenter = (event) => {
+        languagePicker.style.display = 'flex'
+      }
+
+      languagePicker.onmouseleave = (event) => {
+        languagePicker.style.display = 'none'
+      }
     })
   },
   methods: {
@@ -59,6 +100,9 @@ export default {
         this.$router.push(`/search?query=${encodeURIComponent(input.value)}`)
         input.blur()
       }
+    },
+    getImagePath (iso) {
+      return `/img/lang/${iso}.png`
     }
   }
 }
@@ -126,6 +170,87 @@ export default {
 
           .path {
             fill: var(--primary-dark);
+          }
+        }
+      }
+    }
+  }
+
+  .span {
+    flex: 1;
+  }
+
+  .language {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 24px;
+    position: relative;
+
+    .symbol {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      height: 100%;
+      cursor: pointer;
+
+      .icon {
+        font-size: 32px;
+        color: var(--dark);
+      }
+
+      &:hover {
+
+        .icon {
+          color: var(--darker);
+        }
+      }
+    }
+
+    .picker {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      margin-top: 52px;
+      right: 0;
+      z-index: 999999999999;
+
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 8px 0;
+        padding: 12px;
+        border: 1px solid var(--light);
+        border-radius: 8px;
+        background: var(--lighter);
+        box-shadow: var(--shadow-bottom);
+
+        .language {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-bottom: 8px;
+          opacity: .75;
+
+          &:hover {
+            opacity: 1;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .flag {
+            width: 28px;
+            height: auto;
+            margin-right: 8px;
+          }
+
+          .name {
+            font-size: 16px;
+            color: var(--dark);
           }
         }
       }
