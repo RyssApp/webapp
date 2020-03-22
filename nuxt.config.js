@@ -68,17 +68,18 @@ module.exports = {
     icons: {
       solid: [
         'faSignInAlt',
-        'faPen'
+        'faPen',
+        'faLanguage'
       ]
-    }
-  },
-  build: {
-    extend (config, ctx) {
     }
   },
   pwa: {
     icon: {
       iconSrc: 'static/img/logo.png'
+    }
+  },
+  build: {
+    extend (config, ctx) {
     }
   }
 }
