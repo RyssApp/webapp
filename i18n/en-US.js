@@ -1,7 +1,7 @@
 export default {
   ryss: 'Ryss',
   general: {
-    imprint: 'Impring',
+    imprint: 'Imprint',
     terms: 'Terms'
   },
   mainPage: {
