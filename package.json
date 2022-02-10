@@ -24,7 +24,7 @@
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "graphql-tag": "^2.10.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "nuxt-i18n": "^6.6.1",
     "nuxt-leaflet": "0.0.21",
