@@ -25,7 +25,7 @@
     "express": "^4.16.4",
     "graphql-tag": "^2.10.3",
     "node-sass": "^4.13.1",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.6.1",
     "nuxt-leaflet": "0.0.21",
     "sass-loader": "^8.0.2",
